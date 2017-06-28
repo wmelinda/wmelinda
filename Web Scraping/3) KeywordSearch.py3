@@ -1,4 +1,7 @@
+#The third segment of code searches for reviews that specifically mention previously set keywords 
+#They keywords are saved in a file titled 'keywords', which each new line having one keyword 
 
+#Setup
 import webbrowser, requests, bs4, time
  
 # Print current time
