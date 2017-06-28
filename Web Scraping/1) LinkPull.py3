@@ -37,7 +37,7 @@ weblinks1 = []
 for link in weblinks:
 	if link not in weblinks1:
 		weblinks1.append(link)
-
+ 
 #Write all these links into a file, each on a new line 
 #Save the file with the name 'webs' 
 file = open ('webs', 'w')
