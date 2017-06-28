@@ -3,19 +3,22 @@
 
 #Setup
 import webbrowser, requests, bs4, time
- 
-# Print current time
+
+#Because this code takes a while to run, I wanted to keep track of how long it took for my code to run 
+#This code starts the clock to time how long it takes for your program to complete 
 starttime = time.time()
  
-# specify the review link
+#This is the URL used as an example 
 reviewhttp = 'https://www.tripadvisor.com/Attraction_Review-g652016-d3211983-Reviews-La_Cinta-San_Teodoro_Province_of_Olbia_Tempio_Sardinia.html'
  
-# specify number of reviews
+#Looked up the number of reviews on the website and physically inserted it myself
 reviewnum = 201
  
-# specify how many matches needed
+#Wanted to limit the number of reviews that were returned, so added this number to limit the number of reviews per keyword that is found
 matchcount = 3
- 
+
+#For each new link on TripAdvisor, 
+#Need to partition the 
 part1 = reviewhttp.partition("Reviews-")[0] + "or"
 # part1 = 'https://www.tripadvisor.com/Attraction_Review-g150807-d152697-Reviews-or'
 part2 = reviewhttp.split("Reviews",1)[1]
