@@ -1,7 +1,3 @@
-###
-# make github folder 
-git add doc
-
 #####
 import time
 starttime1 = time.time()
