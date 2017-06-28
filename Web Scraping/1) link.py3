@@ -1,3 +1,8 @@
+#This is the first part of my code! 
+#I was looking to 
+
+
+
 #### Gathering links from webpage about beaches --- need to get loop for the page !!! 
 import urllib2
 from bs4 import BeautifulSoup
