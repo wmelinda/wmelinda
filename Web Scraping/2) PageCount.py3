@@ -13,14 +13,19 @@ page = requests.get("https://www.tripadvisor.com/Attraction_Review-g644260-d2233
 #The HTML of the TripAdvisor link with the review number can be found by using 'Inspect'
 #In addition, highlighting over the HTML code colors the sections the code is influencing 
 #From the program, we target specific sections of the HTML until it zeroes in on the section we want - the number of reviews on the specific beach 
+
 #Setting up HTML parser
 soup = BeautifulSoup(page.content, 'html.parser')
+
 #Finding the target div id 
 rating = soup.find(id= "taplc_location_detail_header_attractions_0")
+
 #Finding the target div class
 review = rating.find_all(class_="rs rating")
+
 #Extract first element 
 reviews = review[0]
+
 #Finding the target class to find where the number is 
 numbers = reviews.find(class_="more").get_text()
 
