@@ -19,11 +19,15 @@ soup = BeautifulSoup(page.content, 'html.parser')
 rating = soup.find(id= "taplc_location_detail_header_attractions_0")
 #Finding the target div class
 review = rating.find_all(class_="rs rating")
-
+#Extract first element 
 reviews = review[0]
-#Finding the target class
+#Finding the target class to find where the number is 
 numbers = reviews.find(class_="more").get_text()
 
-# print(numbers)
+#If you ask to 'print numbers', the result will be '1,408 Reviews' 
+
+#Remove the extra text after the number
 count = numbers.partition(" ")[0]
+
+#Print the number (to check the code) 
 print(count)
