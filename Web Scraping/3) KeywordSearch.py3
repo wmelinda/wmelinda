@@ -1,4 +1,6 @@
 #The third segment of code searches for reviews that specifically mention previously set keywords 
+#This is honestly where the bulk of the code is haha 
+#Got some help from my amazing mother to help code all the loops !! 
 #They keywords are saved in a file titled 'keywords', which each new line having one keyword 
 
 #Setup
@@ -50,56 +52,53 @@ for line in keyfile:
 keyfile.close()
  
 #Because every page has 10 reviews, we find the number of pages by dividing the number of reviews by 10 and rounding to the nearest integer
+page = int(math.ceil(reviewnum / 10))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# every page has 10 reviews. calculate number of pages to look at
-page = int(reviewnum / 10)
- 
+#Print this statement to make sure the code is running and that the numbers or okay 
 print("There are ", page, " pages to search and there are total ", reviewnum, " reviews")
  
-# open the review page to make sure it's correct
+#Open the review page to make sure it's correct
+#[I don't have this in the combined code. That would be terrible.] 
 webbrowser.open(reviewhttp)
- 
+
+
+#For each word in the searchwords list (aka the keywords), insert them in the results directory that was previously created. 
 for swd in searchwords:
                results[swd] = []
  
-# go through each page
+ 
+ 
+#FIRST LOOP: for each page:
+
+# Print a statement that states which page you find keywords in, or print that you have looked through the page 
 for x in range(page):
                print ("########## In page ", x, "\n")
                y = x * 10
+   
+   #This section of code is to assist with creating the page links 
                if (y == 0):
                               link = reviewhttp
                else:
                               link = part1 + str(y) + part2
-              
+    
+    #This section of code calls up the link and parses out the paragraph HTML sections (text of reviews !)            
                res=requests.get(link)
                soup = bs4.BeautifulSoup(res.text, "html.parser")
                items= soup.select('p')
  
+    
+    
+    #SECOND LOOP: For each word in the texts we've collected: 
                for z in range(len(items)):
+      
+      
+      
+      #THIRD LOOP: For each keyword in the searchword list: 
                               for swd in searchwords:
+        #IF: number of results of the searchword = number of max reviews we want to collect - 
+           #Move onto the next word 
+        #ELSE: continue through the code 
+        #Searc
                                              if (len(results[swd]) == matchcount):
                                                             continue
                                              wd = ' ' + swd
