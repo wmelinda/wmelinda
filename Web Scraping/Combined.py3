@@ -1,5 +1,5 @@
 #####
-import time
+import time, math
 starttime1 = time.time()
 
 #import urllib2
@@ -83,7 +83,7 @@ for link in weblinks1:
   results ={}
 # 
 # every page has 10 reviews. calculate number of pages to look at
-  pagenums = int(reviewnum / 10) 
+  pagenums = int(math.ceil(reviewnum / 10))
   maxN = 200
   pagenum = max(maxN, pagenums)
   print("There are ", pagenum, " pages to search and there are total ", reviewnum, " reviews")
