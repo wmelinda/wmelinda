@@ -3,6 +3,7 @@
 
 #Setup
 import webbrowser, requests, bs4, time
+import re 
 
 #Because this code takes a while to run, I wanted to keep track of how long it took for my code to run 
 #This code starts the clock to time how long it takes for your program to complete 
@@ -17,13 +18,41 @@ reviewnum = 201
 #Wanted to limit the number of reviews that were returned, so added this number to limit the number of reviews per keyword that is found
 matchcount = 3
 
-#For each new link on TripAdvisor, 
-#Need to partition the 
+#For each new link on TripAdvisor, there is one segment in the middle of the URL that changes 
+#To go to page 2, TripAdvisor ads a multiple of 10 after 'or' and a dash ('-') as well
+#e.g. https://www.tripadvisor.com/Attraction_Review-g644260-d2233143-Reviews-Cala_Mariolu-Baunei_Province_of_Ogliastra_Sardinia.html
+# ->: https://www.tripadvisor.com/Attraction_Review-g644260-d2233143-Reviews-or10-Cala_Mariolu-Baunei_Province_of_Ogliastra_Sardinia.html
+
+#So, to have the code cycle through the pages, there needs to be a loop that continues to run through these different links/pages
+#Need to partition the code into two sections so that they can be reconstructed in the future to create all the page links 
 part1 = reviewhttp.partition("Reviews-")[0] + "or"
-# part1 = 'https://www.tripadvisor.com/Attraction_Review-g150807-d152697-Reviews-or'
+# part1 = 'https://www.tripadvisor.com/Attraction_Review-g644260-d2233143-Reviews-or'
 part2 = reviewhttp.split("Reviews",1)[1]
-# part2 = '-Playa_Langosta-Cancun_Yucatan_Peninsula.html#REVIEWS'
-import re 
+# part2 = 'Cala_Mariolu-Baunei_Province_of_Ogliastra_Sardinia.html'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 m = re.search('Reviews-(.+?).html', reviewhttp)
 if m: 
      beachname = m.group(1)
