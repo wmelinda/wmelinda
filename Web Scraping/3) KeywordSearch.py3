@@ -30,38 +30,17 @@ part1 = reviewhttp.partition("Reviews-")[0] + "or"
 part2 = reviewhttp.split("Reviews",1)[1]
 # part2 = 'Cala_Mariolu-Baunei_Province_of_Ogliastra_Sardinia.html'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#To name the file the name of the beach, I also segmented the URL to pick out the beach name 
 m = re.search('Reviews-(.+?).html', reviewhttp)
 if m: 
      beachname = m.group(1)
-# beachname = 'Playa_Langosta-Cancun_Yucatan_Peninsula'
+# beachname = 'Cala_Mariolu-Baunei_Province_of_Ogliastra_Sardinia'
 
-# define result dictionary
+#Define result dictionary (set it up) 
 results ={}
  
-# get the key words from the file named "keywords"
+#Create a list for words to search for ('searchwords') 
+#Get the key words from the file named "keywords"
 searchwords = []
 keyfile = open("keywords", "r")
 for line in keyfile:
@@ -70,7 +49,31 @@ for line in keyfile:
                searchwords.append(keyword)
 keyfile.close()
  
- 
+#Because every page has 10 reviews, we find the number of pages by dividing the number of reviews by 10 and rounding to the nearest integer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # every page has 10 reviews. calculate number of pages to look at
 page = int(reviewnum / 10)
  
