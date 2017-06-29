@@ -99,6 +99,36 @@ for x in range(page):
            #Move onto the next word 
         #ELSE: continue through the code 
         #Searc
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
                                              if (len(results[swd]) == matchcount):
                                                             continue
                                              wd = ' ' + swd
