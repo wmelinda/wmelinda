@@ -14,7 +14,7 @@ import re
 #URL that has beaches within Italy 
 url = 'https://www.tripadvisor.com/Attractions-g187768-Activities-c61-t52-Italy.html'
 
-########## Part 1 
+########## Part 1) LinkPull
 
 #Open the URL and read the HTML 
 conn = urlopen(url)
@@ -47,11 +47,9 @@ file.close()
 
 ########### Results: file title 'webs' with all the links to all the beaches tripadvisor has in Italy 
 
-
-
-
-# prepare searchwords
-# get the key words from the file named "keywords"
+#Prepare keywords for search
+#Get the key words from the file named "keywords"
+#Create a list named 'searchwords' that contains the keywords 
 searchwords = []
 keyfile = open("keywords", "r")
 for line in keyfile:
@@ -60,10 +58,10 @@ for line in keyfile:
   searchwords.append(keyword)
 keyfile.close() 
 
+########## Part 2) ReviewCount 
 
-##### Open webpages to find # of review for each beach 
+#Segment weblinks to find the number of reviews on each beach 
 for link in weblinks1:
-  starttime2 = time.time()
   url = "https://www.tripadvisor.com" + str(link)
   print(url)
   page = requests.get(url)
@@ -74,7 +72,16 @@ for link in weblinks1:
   numbers = review.find(class_="more").get_text()
   count = numbers.partition(" ")[0]
   reviewnum = int(count.replace(',',''))
-##### Collect the other info we need to get the reviews
+	
+	
+	
+	
+	
+	
+	
+	
+
+# Collect the other info we need to get the reviews
   matchcount = 3
   part1 = url.partition("Reviews-")[0] + "or"
 # e.g. part1 = 'https://www.tripadvisor.com/Attraction_Review-g150807-d152697-Reviews-or'
