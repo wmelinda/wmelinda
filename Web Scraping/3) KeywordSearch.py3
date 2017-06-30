@@ -98,44 +98,19 @@ for x in range(page):
         #IF: number of results of the searchword = number of max reviews we want to collect - 
            #Move onto the next word 
         #ELSE: continue through the code 
-        #Searc
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
                                              if (len(results[swd]) == matchcount):
                                                             continue
+           #For each searchword, search for the word and the lowercase version of the word as well 
                                              wd = ' ' + swd
                                              wd1 = ' ' + swd.lower()
+             #If the word is shorter than 5 characters, make sure you are searching for the word + a space behind it (preventing an compounded words that we don't want from appearing)
                                              if (len(wd1) < 5):
                                                             wd1 = wd1 + ' '
+                #Get the text/words we've collected from reviews
                                              text = items[z].getText()
+                 #IF: keyword is in the text we've collected - 
+                    #Code prints that it has found a match for the word 
+                    #The sentence that the word is in is saved in the results list 
                                              if ((wd in text) or (wd1 in text)):
                                                             print ('\nfound match word:', wd, ' or ', wd1, '\n')
                                                             print (items[z].getText())
@@ -143,10 +118,12 @@ for x in range(page):
                                                             clean_sentence = sentence.replace("\\n", " ")
                                                             results[swd].append(clean_sentence)
  
-def write_red(file, str_):
-     file.write('<p style="color:#ff0000">%s</p>' % str_)
+#The code runs each keyword through the page; and then loops through every page of reviews 
 
+#Create a file titled 'beachname' 
 file = open (beachname, 'w')
+
+#For keywords in the list of keywords, leave spaces and then write down the keyword and reviews with the keyword within it
 for swd in searchwords:
                file.write("\n")
                file.write("\n")
@@ -156,7 +133,7 @@ for swd in searchwords:
                file.write(str("\n\n".join(results[swd])))
 file.close()
  
-# Print current time
+#Print how long it took to run the code 
 endtime = time.time()
 difftime = endtime - starttime
 print ("used time :", difftime, " seconds")
