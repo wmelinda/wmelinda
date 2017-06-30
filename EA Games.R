@@ -1,8 +1,8 @@
-#load data
+#Load data 
 focal.users = read.csv("~/#UPenn/#WUDAC Consulting/focal_users.csv")
 focal.results = read.csv("~/#UPenn/#WUDAC Consulting/focal_results.csv")
 
-#clean data 
+#Clean data based on data description 
 focal.users$Country_Code <- NULL 
 focal.users$User_Age <- NULL 
 focal.users$Gender_Code <- NULL 
@@ -11,9 +11,16 @@ focal.users$bf3[which(focal.users$bf3 == '2000-01-01')]= NA
 focal.users$bf3prem[which(focal.users$bf3prem == "2000-01-01")]= NA
 focal.users$bf4[which(focal.users$bf4 == "2000-01-01")]= NA
 focal.users$bfbc2[which(focal.users$bfbc2 == "2000-01-01")]= NA
-#between focal users vs focal results - focal results only has 611 unique ids, focal users has 1309 ids 
+
+#Compare focal users vs focal results - focal results has 611 unique IDs, focal users has 1309 IDs 
 user.id <- unique(focal.users$User_Account_ID)
 user.id.results <- unique(focal.results$user_account_id)
+
+
+
+
+
+
 
 
 
