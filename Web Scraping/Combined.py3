@@ -1,20 +1,30 @@
-#####
+#Combined code that does all of the processes listed in parts 1 - 4  + some extra bits as well. 
+#Feel free to look at those segments if you would like some more details about the code! 
+
+#Setup & Time start 
 import time, math
 starttime1 = time.time()
 
-#import urllib2
+#Setup 
 from urllib2 import urlopen
 from bs4 import BeautifulSoup
+import webbrowser, requests, bs4
+import re 
 
+#URL that has beaches within Italy 
 url = 'https://www.tripadvisor.com/Attractions-g187768-Activities-c61-t52-Italy.html'
 
-#conn = urllib2.urlopen(url)
+########## Part 1 
+
+#Open the URL and read the HTML 
 conn = urlopen(url)
 html = conn.read()
 
+#Find the links within the HTML
 soup = BeautifulSoup(html, "html.parser")
 links = soup.find_all('a')
 
+#Create a list named 'weblinks' that collects the links of the beaches in Italy 
 weblinks = []
 for tag in links:
   link = tag.get('href',None)
@@ -22,22 +32,23 @@ for tag in links:
     print (link)
     weblinks.append(link)
 
+#Create a list named 'weblinks1' that removes duplicates of links 
 weblinks1 = []
 for link in weblinks:
 	if link not in weblinks1:
 		weblinks1.append(link)
 
+#Create a file named 'webs' and write all the links within the file 
 file = open ('webs', 'w')
 for link in weblinks1:
                file.write(str(link))
                file.write("\n")
 file.close()
 
-##### Results: file title 'webs' with all the links to all the beaches tripadvisor has in Italy 
+########### Results: file title 'webs' with all the links to all the beaches tripadvisor has in Italy 
 
-import requests
-import webbrowser, requests, bs4, time
-import re 
+
+
 
 # prepare searchwords
 # get the key words from the file named "keywords"
