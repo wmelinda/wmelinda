@@ -18,32 +18,33 @@ user.id.results <- unique(focal.results$user_account_id)
 
 
 
+#Find intensive players based on product count - range 1-63 
 
-
-
-
-
-
-
-#find intensive players - product count - range 1-63 
-#convert factors to numerics 
+#Convert factors to numerics 
 focal.users$User_Account_ID <- as.numeric(as.character(focal.users$User_Account_ID))
 focal.users$Product_Owned_Cnt <- as.numeric(as.character(focal.users$Product_Owned_Cnt))
 focal.users$product_owned_count_at_start <- as.numeric(as.character(focal.users$product_owned_count_at_start))
-#find products bought over time (since first GAME played of bf3)
+
+#Find products bought over time (since first GAME played of bf3)
 focal.users$proddiff <- with(focal.users, Product_Owned_Cnt - product_owned_count_at_start)
-#find difference in dates (assuming first GAME played is @bf3)
-#change factors to dates 
+
+#Find difference in dates (assuming first GAME played is bf3)
+#Change factors to dates 
 focal.results$round_start_date <- as.Date(focal.results$round_start_date, format = "%Y-%m-%d")
-#find minimum date for each user 
+
+#Find minimum date for each user (first date of game registered/played) 
 bf3.start <- setNames(aggregate.data.frame(focal.results$round_start_date, list(focal.results$user_account_id), function(x) min(as.character(x)) ), c("user_account_id", "bf3_start"))
-#calculate days played - insert list of end date (march 4, 2014)
+
+#Calculate days played - End date of data collection is March 4, 2014
 bf3.start$end_date <- rep("2014-03-04", length(bf3.start$bf3_start))
-#calculate date diff 
+
+#Calculate date diff 
 bf3.start$days_start <- as.Date(as.character(bf3.start$end_date)) - as.Date(as.character(bf3.start$bf3_start))
-#calculate avg rate each user purchased products - combine the columns 
+
+#Calculate avg rate each user purchased products - combine the columns 
 bf3.products <- merge(bf3.start, focal.users, by.x = "user_account_id", by.y = "User_Account_ID", all.x = TRUE)
-#calculate prod / yr
+                                           
+#Calculate prod / yr
 bf3.products$prod_yr <- (bf3.products$proddiff / as.numeric(bf3.products$days_start)) * 365
 
 #look at the distribution of the data - round data to make graphing easier 
